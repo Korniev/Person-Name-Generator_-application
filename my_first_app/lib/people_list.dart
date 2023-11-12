@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:random_name_generator/random_name_generator.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class PeopleList extends StatefulWidget {
   const PeopleList({super.key});
@@ -10,8 +12,8 @@ class PeopleList extends StatefulWidget {
 
 class _PeopleListState extends State<PeopleList> {
   final _suggestions = <String>[];
-  final _biggerFont = const TextStyle(fontSize: 18);
   final _randomNames = RandomNames(Zone.us);
+  final _selectedNames = <String>{};
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +30,26 @@ class _PeopleListState extends State<PeopleList> {
         return ListTile(
           title: Text(
             _suggestions[index],
-            style: _biggerFont,
+            style: GoogleFonts.almarai(
+            textStyle: const TextStyle(
+              color: Colors.tealAccent,
+              letterSpacing: .8,
+              fontSize: 20.0,
+             ),
+            ),
           ),
+          trailing: _selectedNames.contains(_suggestions[index])
+              ? const Icon(Icons.check_box)
+              : const Icon(Icons.check_box_outline_blank),
+          onTap: () {
+            setState(() {
+              if (_selectedNames.contains(_suggestions[index])) {
+                _selectedNames.remove(_suggestions[index]);
+              } else {
+                _selectedNames.add(_suggestions[index]);
+              }
+            });
+          },
         );
       },
     );

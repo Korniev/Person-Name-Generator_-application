@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_app/people_list.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -15,11 +14,14 @@ class MyApp extends StatelessWidget {
       title: 'Person Name Generator',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Person Name Generator'),
+          backgroundColor: Colors.greenAccent,
+          title: const Text(
+            'Person Name Generator',
+            style: TextStyle(color: Colors.deepOrangeAccent),
+          ),
         ),
-        body: const Center(
-            child: PeopleList()
-        ),
+        body: const Center(child: PeopleList()),
+        backgroundColor: Colors.blueGrey,
       ),
     );
   }
